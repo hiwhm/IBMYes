@@ -1,0 +1,35 @@
+# 
+# 代替ibm.yml
+# 更优雅的重启
+#
+
+name: IBM CF Restart Plan No.25
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+        IBM_ACCOUNT: ${{ secrets.IBM_ACCOUNT }}
+        RESOURCE_GROUP: ${{secrets.RESOURSE_ID}}
+        REGION_NAME: ${{ secrets.REGION_NAME }}
+        APP_NAME: ${{ secrets.IBM_APP_NAME }}
+    
+    steps:
+    
+    - name: Install IBM Cloud CLI & cf
+      run: |
+        curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+        ibmcloud cf install
+    
+    - name: Log in to the IBM Cloud CLI
+      run: |
+        ibmcloud login -g "$RESOURCE_GROUP" -r "$REGION_NAME" $IBM_ACCOUNT
+        
+    - name: Set the target organization & space
+      run: 
+        ibmcloud target --cf
+        
+    - name: Restart CF
+      run: |
+        ibmcloud cf restart "$APP_NAME"
+    
