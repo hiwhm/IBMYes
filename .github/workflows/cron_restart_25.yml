@@ -5,6 +5,11 @@
 
 name: IBM CF Restart Plan No.25
 
+on:
+  workflow_dispatch:
+#  schedule:
+#    - cron: 0 13 * * 5
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
