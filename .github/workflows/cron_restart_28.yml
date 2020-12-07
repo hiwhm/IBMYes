@@ -2,7 +2,7 @@
 # Copyright (c) 2020 hiwhm@github.com
 #
 
-name: IBM Cloud Foundry - V2Ray
+name: IBM CF Restart Plan No.28
 
 env:
   IBM_CF_API: https://api.us-south.cf.cloud.ibm.com
