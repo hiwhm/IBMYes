@@ -28,7 +28,9 @@ jobs:
     
     - name: Log in to the IBM Cloud CLI
       run: |
-        ibmcloud login -g "$RESOURCE_GROUP" -r "$REGION_NAME" $IBM_ACCOUNT
+        ibmcloud login -g "$RESOURCE_GROUP" -r "$REGION_NAME" <<EOF
+        $IBM_ACCOUNT
+        EOF
         
     - name: Set the target organization & space
       run: 
